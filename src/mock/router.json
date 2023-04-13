@@ -1,0 +1,8 @@
+{
+     "/users/login": "/login",
+     "/users/yzm": "/yzm",
+     "/users/info":"/info",
+     "/hero/list":"/list",
+     "/good/list":"/good",
+     "/wz/list":"/wzlist"
+    }

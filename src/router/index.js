@@ -16,6 +16,7 @@ const router = createRouter({
       path: '/',
       name: 'index',
       component: Index,
+      meta: { auth: false}
     },
     {
       path: '/login',
@@ -25,34 +26,50 @@ const router = createRouter({
     {
       path: '/orders',
       name: 'orders',
-      component: Orders
+      component: Orders,
+      meta: { auth: true}
     },
     {
       path: '/address',
       name: 'address',
-      component: Address
+      component: Address,
+      meta: { auth: true}
     },
     {
       path: '/addAddress',
       name: 'addAddress',
-      component: AddAddress
+      component: AddAddress,
+      meta: { auth: true}
     },
     {
       path: '/buy',
       name: 'buy',
-      component: Buy
+      component: Buy,
+      meta: { auth: true}
     },
     {
       path: '/personal',
       name: 'personal',
-      component: Personal
+      component: Personal,
+      meta: { auth: true}
     },
     {
       path: '/succeed',
       name: 'succeed',
-      component: Succeed
+      component: Succeed,
+      meta: { auth: true}
     },
   ]
 })
 
+router.beforeEach((
+  to,from,next)=>{
+    if(to.meta.auth) {
+      next('/login')
+    }
+    else{
+      next()
+    }
+  }
+  )
 export default router
