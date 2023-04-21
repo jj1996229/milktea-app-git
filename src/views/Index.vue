@@ -17,17 +17,34 @@
                 </div>
             </div>
             <div class="order">
-                <van-tree-select v-model:main-active-index="activeIndex" :items="items">
+                <van-tree-select v-model:main-active-index="activeIndex" :items="items" style="height: 55vh;">
                     <template #content>
-                        <van-image v-if="activeIndex === 0"
-                            src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg" />
-                        <van-image v-if="activeIndex === 1"
-                            src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg" />
+                        <van-card :num="index" price="20.00" desc="描述信息" title="商品标题"
+                            thumb="https://picx.zhimg.com/v2-b80d08a69997553d389dcd3818f023ea_1440w.jpg?source=172ae18b"
+                            v-for="(item, index) in items" :key="index">
+                            <template #tags>
+                                <van-tag plain type="primary">{{ item.dec }}</van-tag>
+                                <van-tag plain type="primary">{{ item.text }}</van-tag>
+                            </template>
+                            <template #footer>
+                                <van-button size="mini" @click="showPopup">选择规格</van-button>
+                            </template>
+
+                        </van-card>
                     </template>
                 </van-tree-select>
-
             </div>
         </van-pull-refresh>
+        <van-submit-bar :price="3050" button-text="去结算" @submit="onSubmit" button-color="rgb(233, 143, 9)">
+            <van-icon name="shopping-cart" color="#ee0a24" size="30px" />
+        </van-submit-bar>
+        <van-popup v-model:show="show" :style="{ padding: '20px' }" round="true">
+            <br>糖量<br><van-tag plain type="primary">标签1</van-tag><van-tag plain type="primary">标签2</van-tag>
+            <br>温度<br><van-tag plain type="primary">标签3</van-tag><van-tag plain type="primary">标签4</van-tag>
+            <br>包装<br><van-tag plain type="primary">标签5</van-tag><van-tag plain type="primary">标签6</van-tag>
+            <br><van-button color="#000" plain size="small">加入购物车</van-button>
+        </van-popup>
+        
     </div>
 </template>
 
@@ -36,9 +53,12 @@
 export default {
     data() {
         return {
+            price: '',
             loading: false,
             activeIndex: 0,
-            items: [{ text: '冰淇淋与茶' }, { text: '奶盖茶与原叶茶' }, { text: 'aa茶a茶a茶' }, { text: 'bb茶bb茶' }, { text: 'cc茶茶c茶cc' }, { text: 'd茶d茶d茶d茶d' }],
+            items: [{ text: '冰淇淋与茶', dec: '好喝' }, { text: '奶盖茶与原叶茶', dec: '好喝晕了' }, { text: 'aa茶a茶a茶', dec: '好喝极了' }, { text: 'bb茶bb茶', dec: '好喝晕了' }, { text: 'cc茶茶c茶cc', dec: '好喝' }, { text: 'd茶d茶d茶d茶d', dec: '好喝极了' }, { text: 'd茶d茶d茶d茶d', dec: '好喝' }, { text: 'e茶e茶e', dec: '好喝' }, { text: 'fd茶f茶d茶f', dec: '好喝' }],
+            show: false,
+            showBottom: false
         }
     },
     methods: {
@@ -46,44 +66,38 @@ export default {
             setTimeout(() => {
                 this.loading = false;
             }, 1000);
-        }
+        },
+        onSubmit() {
+            this.showBottom = true;
+        },
+        showPopup() {
+            this.show = true;
+        },
 
-    },
+
+    }
+
 };
+
 
 
 </script>
 
-<style>
+<style scoped>
 * {
     margin: 0;
     padding: 0;
     /* outline: 1px solid #000; */
 }
 
-.template {
-    overflow-y: scroll
-}
 
-/* .fresh {
-    text-align: center;
-    color: #fff;
-    flex: 3;
-}
 
-.fresh p {
-    width: 100vw;
-    height: 100vh;
-    text-align: center;
-    background-color: transparent;
-    z-index: 9999;
-    position: relative;
-} */
+
 
 .bg {
     width: 100vw;
     height: 30vh;
-    background-image: url("https://img.tukuppt.com/png_preview/00/11/20/vTICWd6ExY.jpg%21/fw/780");
+    background-image: url("https://bpic.588ku.com/back_list_pic/20/09/28/efa33573d17cd5ba57c18701a1bb5efb.jpg%21/fw/640/quality/90/unsharp/true/compress/true");
     background-size: cover;
 
 }
@@ -111,9 +125,7 @@ export default {
 
 }
 
-.nm .top {
-    flex: 1;
-}
+
 
 .nm .top h1 {
     background-image: url("https://img0.baidu.com/it/u=1622302095,871955617&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500");
@@ -133,12 +145,10 @@ export default {
     padding: 8px;
     padding-bottom: 0;
     font-weight: normal;
-    font-size: 4vh;
+    font-size: 3vh;
 }
 
-.nm .down {
-    flex: 1;
-}
+
 
 .nm .down p {
     font-size: .5vh;
@@ -162,12 +172,66 @@ export default {
 
 .order {
     background-color: #fff;
-    flex: 7;
-    height: 70vh;
-    padding-top: 15vh;
+    margin-top: 15vh;
+    padding-bottom: 8vh;
 }
 
-/* .template {
-    display: flex;
-} */
+.van-image {
+    width: 50px;
+    height: 50px;
+}
+
+.van-button {
+    background-color: rgb(233, 143, 9);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.van-card {
+    padding-right: 15px;
+}
+
+.van-submit-bar {
+    background-color: #000;
+    border-radius: 50px;
+    width: 90vw;
+    height: 7.5vh;
+    margin-left: 5vw;
+}
+
+.van-submit-bar :deep(.van-submit-bar__text span) {
+    color: #fff;
+}
+
+.van-submit-bar :deep(.van-button) {
+    color: #000 !important
+}
+
+.van-overlay {
+    background: transparent;
+}
+.goods-card {
+    margin: 0;
+    background-color: #fff;
+  }
+
+  .delete-button {
+    height: 100%;
+  }
+  .van-popup .van-tag{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(233, 143, 9);
+    color: #000;
+    font-size:2vh;
+    width: 15vw;
+    height: 5vh;
+    justify-content: space-around;
+  }
+  .van-popup .van-button {
+    border: 0;
+    margin-left: 50%;
+    margin-top: 5px;
+  }
 </style>

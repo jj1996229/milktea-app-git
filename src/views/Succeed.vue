@@ -29,8 +29,9 @@ export default {
             history.back()
         },
         onClickRight() {
-            console.log(123);
-            window.location.href = "/"
+            // console.log(123);
+            // window.location.href = "/"
+            this.$router.push('/')
         },
 
     }

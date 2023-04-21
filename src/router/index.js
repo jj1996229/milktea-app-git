@@ -27,37 +27,37 @@ const router = createRouter({
       path: '/orders',
       name: 'orders',
       component: Orders,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/address',
       name: 'address',
       component: Address,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/addAddress',
       name: 'addAddress',
       component: AddAddress,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/buy',
       name: 'buy',
       component: Buy,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/personal',
       name: 'personal',
       component: Personal,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/succeed',
       name: 'succeed',
       component: Succeed,
-      meta: { auth: true}
+      meta: { auth: false}
     },
   ]
 })
