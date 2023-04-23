@@ -27,7 +27,7 @@ const router = createRouter({
       path: '/orders',
       name: 'orders',
       component: Orders,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/address',
@@ -51,13 +51,13 @@ const router = createRouter({
       path: '/personal',
       name: 'personal',
       component: Personal,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/succeed',
       name: 'succeed',
       component: Succeed,
-      meta: { auth: true}
+      meta: { auth: false}
     },
   ]
 })

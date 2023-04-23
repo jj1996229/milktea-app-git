@@ -1,28 +1,11 @@
 {
-  "users": [
-    {
-      "email": "",
-      "password": "",
-      "id": "",
-      "yzm": 12345
-    }
-  ],
-  "yzm": {
-    "yzm": 1717,
-    "errcode": 0
-  },
-  "login": {
-    "username": "15344328789",
-    "yzm": "1717"
-  },
-  "info": {
-    "errcode": 0,
-    "errmsg": "token正确",
-    "username": "15344328789"
-  },
-  "address": {
-    "telephone": "110",
-    "address": "120",
-    "username": "刘"
-  }
+    "users":[
+        {
+            "email":"",
+            "password":"",
+            "id":""
+
+
+        }
+    ]
 }
