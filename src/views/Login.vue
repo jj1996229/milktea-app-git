@@ -2,10 +2,13 @@
     <div>
         <div>
             <van-nav-bar title="登录" left-arrow @click-left="onClickLeft" />
-            <van-form @submit="onSubmit">
+            <van-form @submit="onSubmit" >
                 <van-cell-group inset>
                     <van-field v-model="username" name="username" label="手机号" placeholder="请输入手机号"
                         :rules="[{ required: true, message: '请填写手机号' }, { pattern: /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1589]))\d{8}$/, message: '请填写正确手机号' }]" />
+
+
+
                     <van-row>
                         <van-col span="16">
                             <van-field v-model="yzm" name="yzm" label="验证码" placeholder="请输入验证码"
@@ -81,4 +84,20 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.van-button{
+    background-color: rgba(255,183,0);
+    border: none;
+}
+.van-nav-bar {
+   background-color: #000;
+}
+.van-nav-bar :deep(.van-nav-bar__title){
+    color: white;
+    font-weight: normal;
+}
+.van-button :deep(.van-button__text){
+    color: #000;
+}
+
+</style>

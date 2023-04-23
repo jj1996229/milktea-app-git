@@ -33,19 +33,19 @@ const router = createRouter({
       path: '/address',
       name: 'address',
       component: Address,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/addAddress',
       name: 'addAddress',
       component: AddAddress,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/buy',
       name: 'buy',
       component: Buy,
-      meta: { auth: true}
+      meta: { auth: false}
     },
     {
       path: '/personal',
