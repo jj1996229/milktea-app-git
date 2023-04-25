@@ -72,7 +72,27 @@ export default
             console.log('failed', errorInfo);
           }
       },
-      onSubmit() {
+      onSubmit(values) {
+       
+          add(values).then((res)=>{
+            console.log(res.data);
+            if(res.data.errcode === 0) {
+            
+              
+               this.$router.push('/address') 
+                showNotify({
+                    type:'success',
+                    message:'登陆成功'
+             })
+            }
+            else{
+                showNotify({
+                    type:'danger',
+                    message:'登陆失败'
+                })
+       }
+       })
+
 
         this.$store.dispatch('addAddress/address', { telephone: this.value1, address: this.value2, username: this.username })
       },

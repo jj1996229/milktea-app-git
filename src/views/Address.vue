@@ -1,14 +1,18 @@
 <template>
     <div>
-        <van-nav-bar title="地址管理" left-arrow @click-left="onClickLeft" />
-        <van-address-list v-model="chosenAddressId" :list="list" :disabled-list="disabledList" disabled-text="以下地址超出配送范围"
+    <van-nav-bar title="地址管理" left-arrow @click-left="onClickLeft" />
+        <van-address-list    v-model="chosenAddressId" :list="list" :disabled-list="disabledList" disabled-text="以下地址超出配送范围"
             default-tag-text="默认" @add="onAdd" @edit="onEdit" add-button-text="+添加收货地址" />
-
+<van-li v-for="item in list" :key="item.id">
+<input type="checkbox"> {{ item.name }},{{ item.tel }}
+{{ item.address }}
+</van-li>
     </div>
 </template>
 
 <script>
 import { showToast } from 'vant';
+import {   apply   }from '../api/users'
 export default {
     data() {
         return {
@@ -47,7 +51,11 @@ export default {
             showToast('编辑地址:' + index);
            
         },
-        
+        created() {
+         apply ().then((res)=>{
+            this.list=res.data.address
+         })
+        }
 
 
 

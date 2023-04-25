@@ -48,7 +48,9 @@ export default {
         },
         onSubmit(values) {
           login(values).then((res)=>{
+            console.log(res.data);
             if(res.data.errcode === 0) {
+            
                this.$store.commit('userToken/updateToken',res.data.token)
                this.$router.push('/user') 
                 showNotify({

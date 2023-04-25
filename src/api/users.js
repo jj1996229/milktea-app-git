@@ -16,8 +16,17 @@ function info() {
     return http.get('/users/info')
 }
 
+function add() {
+    return http.post('/users/info')
+}
+function apply() {
+    return http.get('/users/info')
+}
+
 export {
     sendYzm,
     login,
-    info
+    info,
+    add,
+    apply
 }
